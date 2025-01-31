@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% extends 'base.html' %}
+    <title>{% block title %} Prepaid {% endblock %}</title>
+    {% load static %}
+    <style>
+       tr{background-color:red;}
+    </style>
+</head>
+<body>
+
+    {% block content %}
+    
+    <div class="mb-3 ">
+        <label for="customerid" class="form-label">Customer Number</label>
+        <input type="number" class="form-control" id="customerid" name="customerid" value="{{customerid}}" aria-describedby="customerid">
+      </div>
+
+      <div>
+        
+        <table class="table table-warning table-hover text-center">
+            
+            <thead class="table-dark">
+                <th>PRICE</th>
+                <th>VALIDITY</th>
+                <th>DATA</th>
+                <th>ID's</th>
+                <th>SELECT</th>
+            </thead> {% for plan in plans %}
+            <tr>
+                <td>${{plan.prepaidamount}}</td>
+                <td>{{plan.datavalidity}}days</td>
+                <td>{{plan.datavalue}}GB</td>
+                <td>{{plan.id}}</td>
+                <td><a class="btn btn-outline-success" href="/payment/{{option}}/{{customerid}}/{{plan.id}}">Choose</a></td>
+            </tr>   
+            {% endfor %}
+        </table>
+       
+      </div>
+
+    {% endblock %}
+
+    <script>
+       
+    </script>
+    
+</body>
+</html>

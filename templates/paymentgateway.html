@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    {% extends 'base.html' %}
+    <title> {% block title %} Payment Gateway {% endblock %} </title>  
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/paymentgateway.css' %}">    
+   
+</head>
+<body>
+
+    {% block content %}
+
+    <div class="container">
+
+        <div class="row text-center">
+            <div class="col"><h1> Payment Gateway </h1> </div>
+        </div><br>
+
+        <div class="row text-center g-5">
+            <div class="customerdetails col leftmain shadow">   
+        
+                 
+                <h2 class="title">Customer Id  </h2>
+                <h3> {{ customerid }} </h3><br>
+
+                
+                <h2 class="title">Selected Plan  </h2><br>
+
+                {% if option == "prepaid" %}
+                <h3>Price    - ${{plans.prepaidamount}}</h3><br>
+                <h3>Validity - {{plans.datavalidity}}days</h3><br>
+                <h3>Data     - {{plans.datavalue}}GB</h3><br>
+                <h3>Plan ID  - {{plans.id}}</h3><br><br><br>
+                              
+                {% elif option == "wifi" %}
+
+                <h3>Price    - ${{plans.wifiamount}}</h3><br>
+                <h3>Validity - {{plans.validity}}Month</h3><br>
+                <h3>Data     - {{plans.speed}}Mbps</h3><br>
+                <h3>Plan ID  - {{plans.id}}</h3><br><br><br>
+
+                {% endif %}
+
+            </div>
+
+            <div class="paymentdetails col rightmain shadow ">
+
+                <h2><span class="title">Payment Details :</span> ${{plans.prepaidamount}} {{plans.wifiamount}}</h2><br>
+                
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item yellowbg">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button coralbg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            UPI
+                        </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            
+                            <div class="container text-center">
+                                <div class="row">
+                                  <div class="col">
+                                    <p>Enter UPI ID</p><hr>
+                                    <input type="text" class="form-control" name="upiid" placeholder="12345@upi"><br>
+                                    <input type="text" class="form-control" name="upipassword" placeholder="password"><br>
+                                    <button type="submit" class="btn btn-success">Pay</button>
+                                  </div>
+                                  <div class="col-2"><br><br>
+                                    <h3>or</h3>
+                                  </div>
+                                  <div class="col">
+                                    <p>Scan The QR Code</p><hr>
+                                    <img src={% static "images/qrcode/QR.png" %} alt="qr code" height="150px" width="150px">
+                                  </div>
+                                </div>
+                              </div>                          
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item yellowbg shadow">
+                        <h2 class="accordion-header yellowbg">
+                        <button class="accordion-button collapsed coralbg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Card
+                        </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse yellowbg" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center yellowbg">
+                          <form method="POST">
+                            <table class="yellowbg w-100">
+                                <tbody>
+                                  <tr>
+                                    <td><label for="cardno">Card Number</label> </td>
+                                    <td class="text-start"><input type="number" class="form-control" name="cardno" id="cardno" placeholder="Enter Card Number"></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label for="cardname">Card Name</label></td>
+                                    <td class="text-start"><input type="text" class="form-control" name="cardname" id="cardname" placeholder="Enter Card Name"></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label for="cvv">CVV</label></td>
+                                    <td class="text-start"><input type="number" class="form-control" name="cvv" id="cvv" placeholder="Enter CVV"></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label for="expiry">Expiry Date</label></td>
+                                    <td class="text-start"><input type="date" class="form-control" name="expiry" id="expiry" placeholder="Enter Expiry Date"></td>
+                                  </tr>
+                        
+                                </tbody>
+                        
+                              </table> <hr>
+                              
+                            <button type="submit" class="btn btn-success">Pay</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+    
+    {% endblock %}
+    
+</body>
+</html>

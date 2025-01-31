@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% extends 'base.html' %}
+    <title>{% block title %} Postpaid {% endblock %}</title>
+    {% load static %}
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    {% block content %}
+    
+    <div class="mb-3 ">
+        <label for="customerid" class="form-label">Customer Number</label>
+        <input type="number" class="form-control" id="customerid" name="customerid" value="{{id}}" aria-describedby="customerid">
+      </div>
+
+      <div>
+
+      <h3>{{plans}}</h3>
+      <>
+
+      </div>
+
+
+    {% endblock %}
+    
+</body>
+</html>
